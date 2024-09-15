@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookWise - Book Recommender System</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@300&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #6200ea;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #3700b3;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-list {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list .brand {
+            margin-right: auto;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .nav-list .brand a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .book {
+            color: #ffeb3b; 
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .wise {
+            color: #ffffff; 
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .book:hover {
+            color: #fdd835; 
+        }
+
+        .wise:hover {
+            color: #c5cae9; 
+        }
+
+        .nav-list li {
+            margin: 0 1rem;
+        }
+
+        .nav-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            color: #ffeb3b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .text-white {
+            color: black;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            background-color: #ffeb3b;
+            color: black;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #fdd835;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .col-md-3 {
+            flex: 1 1 calc(25% - 1rem);
+            max-width: calc(25% - 1rem);
+        }
+
+        .col-md-2 {
+            flex: 1 1 calc(20% - 1rem);
+            max-width: calc(20% - 1rem);
+        }
+
+        .card {
+            background-color: #e3f2fd; /* Light blue background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            background-color: #bbdefb; /* Slightly darker blue on hover */
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            height: 300px;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #6200ea;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h4 {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .recommended-books {
+            margin-top: 2rem;
+        }
+
+        .recommended-books .row {
+            gap: 1rem; /* Adjusted space between cards */
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        h2 {
+            color: #00796b; /* Updated color for headings */
+        }
+
+        @media (max-width: 768px) {
+            .col-md-2 {
+                flex: 1 1 calc(50% - 1rem);
+                max-width: calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .col-md-2 {
+                flex: 1 1 calc(100% - 1rem);
+                max-width: calc(100% - 1rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="brand"><a href="#"><span class="book">Book</span><span class="wise">Wise</span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/recommend">Recommend</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-white" style="font-size:50px; text-align: center;">Recommend Books</h1>
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control" placeholder="Enter book genre or title"><br>
+                    <input type="submit" class="btn btn-lg" value="Get Recommendations">
+                </form>
+            </div>
+
+            {% if data %}
+                <div class="col-md-12 recommended-books full-width">
+                    <h2 class="text-white" style="text-align: center; margin-bottom: 2rem;">Recommended Books</h2>
+                    <div class="row">
+                        {% for i in data %}
+                            <div class="col-md-2">
+                                <div class="card">
+                                    <img class="card-img-top" src="{{i[2]}}" alt="{{i[0]}}">
+                                    <p>{{i[0]}}</p>
+                                    <h4>{{i[1]}}</h4>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</body>
+</html>
